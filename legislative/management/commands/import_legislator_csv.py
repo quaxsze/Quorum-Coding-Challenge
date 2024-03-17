@@ -1,6 +1,7 @@
 import csv
 from django.core.management.base import BaseCommand
-from legislative.models import Legislato
+from legislative.models import Legislator
+
 
 class Command(BaseCommand):
     help = 'Load legislator csv file into the Quorum database'
