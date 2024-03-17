@@ -18,3 +18,4 @@ class Command(BaseCommand):
                     id=int(row['id']),
                     name=row['name'],
                 )
+        print("Legislators import completed successfully.")

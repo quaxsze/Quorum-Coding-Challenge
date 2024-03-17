@@ -20,3 +20,4 @@ class Command(BaseCommand):
                     vote_id=int(row['vote_id']),
                     vote_type=int(row['vote_type'])
                 )
+        print("Votes results import completed successfully.")

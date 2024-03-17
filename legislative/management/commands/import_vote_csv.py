@@ -18,3 +18,4 @@ class Command(BaseCommand):
                     id=int(row['id']),
                     bill_id=int(row['bill_id'])
                 )
+        print("Votes import completed successfully.")
