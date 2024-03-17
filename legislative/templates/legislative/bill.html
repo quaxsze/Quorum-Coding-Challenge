@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bill</title>
+</head>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+<h1>Bill {{ bill.id }}</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Bill</th>
+    <th>Supporters</th>
+    <th>Supporters</th>
+    <th>Primary Sponsor</th>
+  </tr>
+  <tr>
+    <td>{{ bill.id }}</td>
+    <td>{{ bill.title }}</td>
+    <td>{{ legislators_supported }}</td>
+    <td>{{ legislators_opposed }}</td>
+    <td>{{ primary_sponsor }}</td>
+  </tr>
+</table>
+</body>
+</html>
