@@ -1,15 +1,21 @@
 from django.db import models
 
 
-class Bill(models.Model):
-    id = models.IntegerField(primary_key=True)
-    title = models.CharField(max_length=200)
-    primary_sponsor = models.IntegerField(default=0)
-
-
 class Legislator(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+
+class Bill(models.Model):
+    id = models.IntegerField(primary_key=True)
+    title = models.CharField(max_length=200)
+    primary_sponsor = models.ForeignKey(Legislator, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
 
 
 class Vote(models.Model):

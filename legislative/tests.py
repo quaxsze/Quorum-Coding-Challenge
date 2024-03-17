@@ -5,13 +5,18 @@ from .models import Bill, Legislator, Vote, VoteResult
 class BillModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        # Set up non-modified objects used by all test methods
-        Bill.objects.create(id=1, title='Bill Title', primary_sponsor=1)
+        legislator = Legislator.objects.create(id=1, name='Jane Doe')
+        Bill.objects.create(id=1, title='Bill Title', primary_sponsor=legislator)
 
     def test_bill_creation(self):
         bill = Bill.objects.get(id=1)
         self.assertTrue(isinstance(bill, Bill))
-        self.assertEqual(bill.__str__(), bill.title)
+        self.assertEqual(bill.title, 'Bill Title')
+        self.assertEqual(bill.primary_sponsor.name, 'Jane Doe')
+
+    def test_bill_primary_sponsor_relation(self):
+        bill = Bill.objects.get(id=1)
+        self.assertTrue(isinstance(bill.primary_sponsor, Legislator))
 
 
 class LegislatorModelTest(TestCase):
@@ -28,7 +33,8 @@ class LegislatorModelTest(TestCase):
 class VoteModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        bill = Bill.objects.create(id=1, title='Bill Title', primary_sponsor=1)
+        legislator = Legislator.objects.create(id=1, name='Jane Doe')
+        bill = Bill.objects.create(id=1, title='Bill Title', primary_sponsor=legislator)
         Vote.objects.create(id=1, bill=bill)
 
     def test_vote_creation(self):
@@ -41,7 +47,7 @@ class VoteResultModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         legislator = Legislator.objects.create(id=1, name='John Doe')
-        bill = Bill.objects.create(id=1, title='Bill Title', primary_sponsor=1)
+        bill = Bill.objects.create(id=1, title='Bill Title', primary_sponsor=legislator)
         vote = Vote.objects.create(id=1, bill=bill)
         VoteResult.objects.create(id=1, legislator=legislator, vote=vote, vote_type=1)
 

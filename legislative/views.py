@@ -42,8 +42,7 @@ def bill(request, bill_id):
     ).aggregate(oppose_count=Count('legislator', distinct=True))
 
     # Retrieve the primary sponsor of the bill
-    primary_sponsor_id = Bill.objects.get(id=bill_id).primary_sponsor
-    primary_sponsor = Legislator.objects.get(id=primary_sponsor_id).name
+    primary_sponsor = bill.primary_sponsor.name
 
     context = {
         "bill": bill,
